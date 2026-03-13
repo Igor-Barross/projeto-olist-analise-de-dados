@@ -1,0 +1,15 @@
+# Virtual env
+.venv/
+.venv/**
+
+# VS Code
+.vscode/
+
+# Dados locais
+data/raw/
+data/interim/
+data/processed/
+
+# Cache Python
+__pycache__/
+*.pyc

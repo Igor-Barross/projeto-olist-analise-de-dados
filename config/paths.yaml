@@ -1,0 +1,16 @@
+project:
+  name: olist_data_project
+  version: "0.1.0"
+
+paths:
+  data_raw: "data/raw"
+  data_interim: "data/interim"
+  data_processed: "data/processed"
+
+  notebooks_exploratory: "notebooks/exploratory"
+  notebooks_reports: "notebooks/reports"
+
+  reports_root: "reports"
+  reports_figures: "reports/figures"
+  reports_tables: "reports/tables"
+  reports_bi: "reports/bi"

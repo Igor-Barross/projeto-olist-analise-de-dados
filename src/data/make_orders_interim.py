@@ -1,28 +1,12 @@
-from pathlib import Path
-from src.utils.functions import inspect_df
 import pandas as pd
-import yaml
-# flake8: noqa: F841
-
-
+from pathlib import Path
+from src.utils.functions import (
+    inspect_df,
+    get_path_config,
+    get_orders_pipeline_config
+)
 # RAIZ DO PROJETO
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-
-
-# Carregar configs YAML
-def load_yaml_config(config_path: Path) -> dict:
-    with config_path.open("r", encoding="utf-8") as f:
-        return yaml.safe_load(f)
-
-
-def get_path_config() -> dict:
-    config_path = PROJECT_ROOT / "config" / "paths.yaml"
-    return load_yaml_config(config_path)
-
-
-def get_orders_pipeline_config() -> dict:
-    config_path = PROJECT_ROOT / "config" / "pipeline_orders.yaml"
-    return load_yaml_config(config_path)
 
 
 # Função para converter tipos de colunas do dataset
@@ -96,15 +80,12 @@ def build_orders_base():
 
     interim_enabled = pipe_cfg["interim"].get("enabled", True)
     interim_filename = pipe_cfg["interim"]["filename"]
-    processed_filename = pipe_cfg["processed"]["filename"]
 
     columns_to_keep: list = pipe_cfg["columns"]["keep"]
-    datetime_cols = pipe_cfg["columns"].get("datetime", [])
-
-    features_cfg = pipe_cfg.get("features", {})
 
     # ler dado bruto
     raw_path = raw_dir / raw_filename
+
     df: pd.DataFrame = pd.read_csv(
         raw_path, sep=raw_sep, encoding=raw_encoding)
 
